@@ -1,0 +1,24 @@
+{
+  "name": "shopify-intern-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KayhanTejani/shopify-intern-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KayhanTejani/shopify-intern-challenge/issues"
+  },
+  "homepage": "https://github.com/KayhanTejani/shopify-intern-challenge#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3"
+  }
+}
