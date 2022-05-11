@@ -11,3 +11,5 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
         console.log('Error in DB connection: ' + err)
     }
 });
+
+require('./item.model');
