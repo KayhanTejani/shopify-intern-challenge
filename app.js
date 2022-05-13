@@ -12,8 +12,10 @@ app.set('views', path.join(__dirname, '/views/'));
 app.engine('hbs', exphbs.engine({ extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/' }));
 app.set('view engine', 'hbs');
 
-app.get('/', (req, res) => {
-    res.json('Items');
+app.get('/create', (req, res) => {
+    res.render("item/addOrEdit", {
+        viewTitle: "Create Item Entry"
+    });
 });
 
 app.listen(3000, () => {
