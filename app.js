@@ -27,6 +27,21 @@ app.get('/create', (req, res) => {
 
 app.post('/create', (req, res) => {
     console.log(req.body);
+    const item = new Item({
+        name: req.body.name,
+        category: req.body.category,
+        quantity: req.body.qty,
+        price: req.body.price
+    });
+
+    item.save((err, doc) => {
+        if (!err) {
+            res.redirect('/')
+        }
+        else {
+            console.log(`Error while saving item: ${err}`);
+        }
+    })
 });
 
 app.listen(3000, () => {
