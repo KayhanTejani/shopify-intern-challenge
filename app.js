@@ -91,6 +91,17 @@ function updateItem(req, res) {
     });
 };
 
+app.get('/delete/:id', (req, res) => {
+    Item.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (!err) {
+            res.redirect("/");
+        }
+        else {
+            console.log(`Error while deleting item: ${err}`);
+        }
+    });
+});
+
 app.listen(3000, () => {
     console.log("Express server started at port : 3000");
 });
