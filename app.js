@@ -19,6 +19,12 @@ app.use(express.urlencoded({
 
 
 // Routes
+app.get('/', (req, res) => {
+    res.render("item/index", {
+
+    });
+});
+
 app.get('/create', (req, res) => {
     res.render("item/addOrEdit", {
         viewTitle: "Create Item Entry"

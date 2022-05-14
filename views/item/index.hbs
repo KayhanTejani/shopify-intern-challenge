@@ -1,0 +1,22 @@
+<h3>Inventory Item List</h3>
+
+ <table class="table table-striped">
+     <thead>
+         <tr>
+             <th>Name</th>
+             <th>Category</th>
+             <th>Quantity</th>
+             <th>Price</th>
+         </tr>
+     </thead>
+     <tbody>
+         {{#each list}}
+         <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.price}}</td>
+         </tr>
+         {{/each}}
+     </tbody>
+ </table>
