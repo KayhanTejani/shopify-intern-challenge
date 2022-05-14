@@ -3,7 +3,8 @@ require('./models/db');
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
-const Item = require('./models/item.model')
+const Item = require('./models/item.model');
+const { insertMany } = require('./models/item.model');
 
  // Express setup
 const app = express();
@@ -39,7 +40,29 @@ app.get('/create', (req, res) => {
 });
 
 app.post('/create', (req, res) => {
-    console.log(req.body);
+    if (req.body._id == "") {
+        insertItem(req, res);
+    }
+    else {
+        updateItem(req, res);
+    }
+});
+
+app.get('/:id', (req, res) => {
+    Item.findById(req.params.id, (err, itemFound) => {
+        if (!err) {
+            res.render("item/addOrEdit", {
+                viewTitle: "Update Item",
+                item: itemFound
+            });
+        }
+        else {
+            console.log(`Error in retrieving item: ${err}`);
+        }
+    }).lean();
+});
+
+function insertItem(req, res) {
     const item = new Item({
         name: req.body.name,
         category: req.body.category,
@@ -54,8 +77,19 @@ app.post('/create', (req, res) => {
         else {
             console.log(`Error while saving item: ${err}`);
         }
-    })
-});
+    });
+}
+
+function updateItem(req, res) {
+    Item.findOneAndUpdate({ _id: req.body._id}, req.body, { new: true }, (err, doc) => {        
+        if (!err) {
+            res.redirect('/');
+        }
+        else {
+            console.log(`Error while updating item: ${err}`);
+        }
+    });
+};
 
 app.listen(3000, () => {
     console.log("Express server started at port : 3000");
