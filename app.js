@@ -20,9 +20,16 @@ app.use(express.urlencoded({
 
 // Routes
 app.get('/', (req, res) => {
-    res.render("item/index", {
-
-    });
+    Item.find((err, items) => {
+        if (!err) {
+            res.render("item/index", {
+                list: items
+            });
+        }
+        else {
+            console.log(`Error in retrieving item list: ${err}`);
+        }
+    }).lean();
 });
 
 app.get('/create', (req, res) => {
