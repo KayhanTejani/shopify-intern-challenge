@@ -14,7 +14,6 @@ router.post('/create', (req, res) => {
         insertItem(req, res);
     }
     else {
-        // console.log("Existing item has to be updated");
         updateItem(req, res);
     }
 });
@@ -37,7 +36,7 @@ function insertItem(req, res) {
     const item = new Item({
         name: req.body.name,
         category: req.body.category,
-        quantity: req.body.qty,
+        quantity: req.body.quantity,
         price: req.body.price
     });
 
@@ -52,10 +51,8 @@ function insertItem(req, res) {
 }
 
 function updateItem(req, res) {
-    console.log(req.body);
     Item.findOneAndUpdate({ _id: req.body._id}, req.body, { new: true }, (err, doc) => {
         if (!err) {
-            // console.log("item should have updated");
             res.redirect('/');
         }
         else {

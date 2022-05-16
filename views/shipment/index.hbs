@@ -1,6 +1,32 @@
 <h3>Shipments List</h3>
 
-<a class="btn btn-secondary" href="/shipment/create" style="position:absolute; right:0;">Create Shipment</a>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <form action="/shipment/create" class="form-container">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <label for="products">Choose product being restocked: </label>
+                    <select class="form-select form-select-sm" id="product" name="product"
+                        aria-label=".form-select-sm example" style="position:relative; left:0em;">
+                        <option selected></option>
+                        {{#each products}}
+                        <option>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<a class="btn btn-secondary" id="create" data-toggle="modal" data-target="#myModal" style="position:absolute; right:0;"> Create Shipment</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -20,10 +46,14 @@
             <td>{{this.price}}</td>
             <td>{{this.status}}</td>
             <td>
-                <a href="/shipment/complete/{{this.name}}/{{this.quantity}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                <a href="/shipment/delete/{{this._id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                <a href="/shipment/complete/{{this.name}}/{{this.quantity}}"><i class="fa fa-check fa-lg" id="edit" aria-hidden="true"></i></a>
             </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
