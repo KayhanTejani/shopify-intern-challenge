@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const Item = require('./models/item.model');
+const Shipment = require('./models/shipment.model');
 const { insertMany } = require('./models/item.model');
 
  // Express setup
@@ -46,6 +47,18 @@ app.post('/create', (req, res) => {
     else {
         updateItem(req, res);
     }
+});
+
+app.get('/shipment', (req, res) => {
+    res.render("shipment/index");
+});
+
+app.get('/shipment/create', (req, res) => {
+    res.render("shipment/createShipment");
+});
+
+app.post('/shipment/create', (req, res) => {
+    res.redirect('/shipment');
 });
 
 app.get('/:id', (req, res) => {

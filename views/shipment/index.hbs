@@ -1,0 +1,29 @@
+<h3>Shipments List</h3>
+
+<a class="btn btn-secondary" href="/shipment/create" style="position:absolute; right:0;">Create Shipment</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.category}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.status}}</td>
+            <td>
+                <a href="/shipment/complete/{{this.name}}/{{this.quantity}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/shipment/delete/{{this._id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
