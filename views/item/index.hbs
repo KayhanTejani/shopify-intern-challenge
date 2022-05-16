@@ -1,6 +1,6 @@
 <h3>Inventory Item List</h3>
 
-<a class="btn btn-secondary" href="/create" style="position:absolute; right:0;">Create Item</a>
+<a class="btn btn-secondary" href="/item/create" style="position:absolute; right:0;">Create Item</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -18,8 +18,8 @@
             <td>{{this.quantity}}</td>
             <td>{{this.price}}</td>
             <td>
-                <a href="/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                <a href="/delete/{{this._id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                <a href="/item/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                <a href="/item/delete/{{this._id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
             </td>
         </tr>
         {{/each}}
