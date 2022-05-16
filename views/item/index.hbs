@@ -1,17 +1,18 @@
 <h3>Inventory Item List</h3>
 
- <table class="table table-striped">
-     <thead>
-         <tr>
-             <th>Name</th>
-             <th>Category</th>
-             <th>Quantity</th>
-             <th>Price</th>
-         </tr>
-     </thead>
-     <tbody>
-         {{#each list}}
-         <tr>
+<a class="btn btn-secondary" href="/create" style="position:absolute; right:0;">Create Item</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
             <td>{{this.name}}</td>
             <td>{{this.category}}</td>
             <td>{{this.quantity}}</td>
@@ -20,7 +21,7 @@
                 <a href="/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                 <a href="/delete/{{this._id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
             </td>
-         </tr>
-         {{/each}}
-     </tbody>
- </table>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
