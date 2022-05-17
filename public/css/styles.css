@@ -22,3 +22,7 @@ html, .row{
 .nav-link {
     color: #fff;
 }
+
+td, tr {
+    text-align: center;
+}
