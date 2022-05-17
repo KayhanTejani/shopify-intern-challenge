@@ -21,6 +21,10 @@ app.use(express.urlencoded({
 }));
 
 
+// Load static assets
+app.use(express.static('public'));
+
+
 // Routes
 app.get('/', (req, res) => {
     Item.find((err, items) => {
