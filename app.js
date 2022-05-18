@@ -3,10 +3,9 @@ require('./models/db');
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
-const Item = require('./models/item.model');
 const itemRoute = require('./routes/item');
 const shipmentRoute = require('./routes/shipment');
-const { insertMany } = require('./models/item.model');
+const appHelpers = require('./helpers/appHelpers');
 
  // Express setup
 const app = express();
@@ -26,17 +25,8 @@ app.use(express.static('public'));
 
 
 // Routes
-app.get('/', (req, res) => {
-    Item.find((err, items) => {
-        if (!err) {
-            res.render("item/index", {
-                list: items
-            });
-        }
-        else {
-            console.log(`Error in retrieving item list: ${err}`);
-        }
-    }).lean();
+app.get('/', async (req, res, next) => {
+    await appHelpers.getItems(req, res, next);
 });
 
 

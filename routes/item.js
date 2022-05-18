@@ -1,75 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const Item  = require('../models/item.model');
+const appHelpers = require('../helpers/appHelpers');
 
 
-router.get('/create', (req, res) => {
-    res.render("item/addOrEdit", {
-        viewTitle: "Create Item Entry"
-    });
+router.get('/create', async (req, res, next) => {
+    await appHelpers.addItem(req, res, next);
 });
 
-router.post('/create', (req, res) => {
+router.post('/create', async (req, res, next) => {
     if (req.body._id == "") {
-        insertItem(req, res);
+        await appHelpers.createItem(req, res, next);
     }
     else {
-        updateItem(req, res);
+        await appHelpers.updateItem(req, res, next);
     }
 });
 
-router.get('/:id', (req, res) => {
-    Item.findById(req.params.id, (err, itemFound) => {
-        if (!err) {
-            res.render("item/addOrEdit", {
-                viewTitle: "Update Item",
-                item: itemFound
-            });
-        }
-        else {
-            console.log(`Error in retrieving item: ${err}`);
-        }
-    }).lean();
+router.get('/:id', async (req, res, next) => {
+    await appHelpers.retrieveItem(req, res, next);
 });
 
-function insertItem(req, res) {
-    const item = new Item({
-        name: req.body.name,
-        category: req.body.category,
-        quantity: req.body.quantity,
-        price: req.body.price
-    });
-
-    item.save((err, doc) => {
-        if (!err) {
-            res.redirect('/')
-        }
-        else {
-            console.log(`Error while saving item: ${err}`);
-        }
-    });
-}
-
-function updateItem(req, res) {
-    Item.findOneAndUpdate({ _id: req.body._id}, req.body, { new: true }, (err, doc) => {
-        if (!err) {
-            res.redirect('/');
-        }
-        else {
-            console.log(`Error while updating item: ${err}`);
-        }
-    });
-};
-
-router.get('/delete/:id', (req, res) => {
-    Item.findByIdAndRemove(req.params.id, (err, doc) => {
-        if (!err) {
-            res.redirect("/");
-        }
-        else {
-            console.log(`Error while deleting item: ${err}`);
-        }
-    });
+router.get('/delete/:id', async (req, res, next) => {
+    await appHelpers.deleteItem(req, res, next);
 });
 
 module.exports = router;
