@@ -3,7 +3,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+const dbConnect = process.env['DB_CONNECT']
+
+mongoose.connect(dbConnect, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     if (!err) {
         console.log('MongoDB Connection Succeeded.')
     }
