@@ -9,6 +9,7 @@ function handleError(errorMessage, next) {
     next(error);
 }
 
+// Returns all items in inventory
 async function getItems(next) {
     try {
         const items = await Item.find().lean().exec();
@@ -19,6 +20,7 @@ async function getItems(next) {
     }
 }
 
+// Creates new item and stores in DB
 async function createItem(req, next) {
     try {
         const item = new Item({
@@ -35,6 +37,7 @@ async function createItem(req, next) {
     }
 }
 
+// Retrieves a specific item in inventory using its id
 async function retrieveItem(req, next) {
     try {
         const item = await Item.findById(req.params.id).lean().exec();
@@ -45,6 +48,7 @@ async function retrieveItem(req, next) {
     }
 }
 
+// Retrives a specific item in inventory using its name
 async function retrieveItemByName(req, next) {
     try {
         findResult = await Item.find( {name: req.query.product} ).lean().exec();
@@ -56,6 +60,7 @@ async function retrieveItemByName(req, next) {
     }
 }
 
+// Updates item data in DB
 async function updateItem(req, next) {
     try {
         await Item.findOneAndUpdate({ _id: req.body._id}, req.body, { new: true });
@@ -66,6 +71,7 @@ async function updateItem(req, next) {
     }
 }
 
+// Deletes item from DB
 async function deleteItem(req, next) {
     try {
         await Item.findByIdAndRemove(req.params.id);
@@ -76,6 +82,7 @@ async function deleteItem(req, next) {
     }
 }
 
+// Returns all shipments in DB
 async function getShipments(next) {
     try {
         const shipments = await Shipment.find().lean().exec();
@@ -86,6 +93,7 @@ async function getShipments(next) {
     }
 }
 
+// Creates new shipment and stores it in DB
 async function createShipment(req, next) {
     try {
         const shipment = new Shipment({
@@ -103,6 +111,7 @@ async function createShipment(req, next) {
     }
 }
 
+// Completes existing shipment by updating status in DB
 async function completeShipment(req, next) {
     try {
         await Shipment.findOneAndUpdate({name: req.params.name}, {status: "Completed"}, {new: true});
@@ -114,6 +123,7 @@ async function completeShipment(req, next) {
     }
 }
 
+// Updates item quantity in DB once shipment is complete
 async function updateInventory(req, next) {
     try {
         await Item.findOneAndUpdate({name: req.params.name}, { $inc: { quantity: req.params.quantity } }, { new: true });
