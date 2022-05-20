@@ -7,10 +7,11 @@ items as well as view a list of them.
 
 **Selected Feature Requirement:**
 The user is able to create 'shipments' and assign inventory to them for existing items. Once a shipment is created, it is "Processing".
-The user can click the check mark right beside the shipment entry to 'complete' the shipment which will adjust the inventory of the item appropriately.
+To 'complete' the shipment, the user can click the check mark right beside the shipment entry which will adjust the inventory of the item appropriately.
 
 This project is made with a frontend of HTML + CSS + Bootstrap, a backend of JavaScript + Express + Handlebars and a MongoDB database to store items and shipments.
 
+![Demo](public/media/demo.gif)
 
 ## Data Model
 
