@@ -13,6 +13,26 @@ This project is made with a frontend of HTML + CSS + Bootstrap, a backend of Jav
 
 ![Demo](public/media/demo.gif)
 
+## Local Configuration
+
+You can run this project locally through these steps:
+
+1. Clone the repository to your machine
+
+        $ git clone https://github.com/KayhanTejani/shopify-intern-challenge.git
+        
+2. Change into the project directory
+
+        $ cd shopify-intern-challenge
+        
+3. Install all the required Node.js dependencies
+
+        $ npm install
+        
+4. Run the web app
+
+        $ node app.js
+
 ## Data Model
 
 The application stores items and shipments
