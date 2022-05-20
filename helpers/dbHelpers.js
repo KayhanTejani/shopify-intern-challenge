@@ -114,7 +114,7 @@ async function createShipment(req, next) {
 // Completes existing shipment by updating status in DB
 async function completeShipment(req, next) {
     try {
-        await Shipment.findOneAndUpdate({name: req.params.name}, {status: "Completed"}, {new: true});
+        await Shipment.findOneAndUpdate({_id: req.params.id}, {status: "Completed"}, {new: true});
         return;
     }
     catch (err) {

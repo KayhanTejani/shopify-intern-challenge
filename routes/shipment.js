@@ -17,7 +17,7 @@ router.post('/create', async (req, res, next) => {
     await appHelpers.createShipment(req, res, next);
 });
 
-router.get('/complete/:name/:quantity', async (req, res, next) => {
+router.get('/complete/:id/:name/:quantity', async (req, res, next) => {
     await appHelpers.updateInventory(req, res, next);
     await appHelpers.completeShipment(req, res, next);
 })
