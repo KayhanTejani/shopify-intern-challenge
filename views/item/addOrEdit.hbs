@@ -1,23 +1,26 @@
  <h3>{{viewTitle}}</h3>
 
-<form action="/item/create" method="POST" autocomplete="off">
+<form action="/item/create" method="POST" autocomplete="off" onsubmit="return validate()">
     <input type="hidden" name="_id" value="{{item._id}}">
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" name="name" value="{{item.name}}">
+        <input type="text" class="form-control" name="name" value="{{item.name}}" required>
     </div>
     <div class="form-group">
         <label>Category</label>
-        <input type="text" class="form-control" name="category" value="{{item.category}}">
+        <input type="text" class="form-control" name="category" value="{{item.category}}" required>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Quantity</label>
-            <input type="text" class="form-control" name="quantity" value="{{item.quantity}}">
+            <input type="text" class="form-control" id="quantity" name="quantity" value="{{item.quantity}}" required>
+            <small style="display:none" id="qtyHelp" class="text-danger">
+                Please enter a positive number
+            </small>
         </div>
         <div class="form-group col-md-6">
             <label>Price</label>
-            <input type="text" class="form-control" name="price" value="{{item.price}}">
+            <input type="text" class="form-control" name="price" value="{{item.price}}" required>
         </div>
     </div>
     <div class="form-group">
@@ -25,3 +28,16 @@
         <a class="btn btn-secondary" href="/" id="view-all"> View All</a>
     </div>
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+    function validate() {
+        let quantity = parseInt(document.getElementById("quantity").value);
+        if (quantity < 1) {
+            $('#qtyHelp').css('display', 'block');
+            return false;
+        }
+        return true;
+    }
+</script>

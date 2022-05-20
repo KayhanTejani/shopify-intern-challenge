@@ -1,6 +1,6 @@
  <h3>Create Shipment</h3>
 
-<form action="/shipment/create" method="POST" autocomplete="off">
+<form action="/shipment/create" method="POST" autocomplete="off" onsubmit="return validate()">
     <input type="hidden" name="_id" value="{{item._id}}">
     <div class="form-group">
         <label>Name</label>
@@ -14,7 +14,10 @@
         <div class="form-group col-md-6">
             <input type="hidden" id="qty-available" value="{{item.quantity}}">
             <label>Quantity (Available: {{item.quantity}})</label>
-            <input type="text" class="form-control" name="quantity" value="">
+            <input type="text" class="form-control" id="quantity" name="quantity" value="" required>
+            <small style="display:none" id="qtyHelp" class="text-danger">
+                Please enter a positive number
+            </small>
         </div>
         <div class="form-group col-md-6">
             <label>Price</label>
@@ -26,3 +29,16 @@
         <a class="btn btn-secondary" href="/shipment" id="view-all"> View All</a>
     </div>
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script>
+    function validate() {
+        let quantity = parseInt(document.getElementById("quantity").value);
+        if (quantity < 1) {
+            $('#qtyHelp').css('display', 'block');
+            return false;
+        }
+        return true;
+    }
+</script>
