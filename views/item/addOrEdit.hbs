@@ -20,7 +20,10 @@
         </div>
         <div class="form-group col-md-6">
             <label>Price</label>
-            <input type="text" class="form-control" name="price" value="{{item.price}}" required>
+            <input type="text" class="form-control" id="price" name="price" value="{{item.price}}" required>
+            <small style="display:none" id="priceHelp" class="text-danger">
+                Please enter a positive number
+            </small>
         </div>
     </div>
     <div class="form-group">
@@ -34,8 +37,13 @@
 <script>
     function validate() {
         let quantity = parseInt(document.getElementById("quantity").value);
-        if (quantity < 1) {
+        let price = parseInt(document.getElementById("price").value);
+        if (quantity < 1 || isNaN(quantity)) {
             $('#qtyHelp').css('display', 'block');
+            return false;
+        }
+        if (price < 1 || isNaN(price)) {
+            $('#priceHelp').css('display', 'block');
             return false;
         }
         return true;

@@ -35,7 +35,7 @@
 <script>
     function validate() {
         let quantity = parseInt(document.getElementById("quantity").value);
-        if (quantity < 1) {
+        if (quantity < 1 || isNaN(quantity)) {
             $('#qtyHelp').css('display', 'block');
             return false;
         }
